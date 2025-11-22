@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
+    public float runSpeed = 7;
+    public float walkSpeed = 3;
     public float rotationSpeed = 12f;
     public float jumpForce = 9;
     public float gravity = -20;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
 
     private PlayerCombat combat;
+    LockOnSystem lockOnSystem;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        lockOnSystem = GetComponent<LockOnSystem>();
     }
 
     // Update is called once per frame
@@ -42,13 +46,25 @@ public class PlayerController : MonoBehaviour
         HandleJump();
     }
 
+    private void LateUpdate()
+    {
+        if (lockOnSystem.LockMode || lockOnSystem.SoftLockMode)
+        {
+            if (lockOnSystem.currentTarget != null)
+            {
+                RotateToTarget(lockOnSystem.currentTarget);
+            }
+            return;
+        }
+    }
+
     private void HandleMovement()
     {
         if (combat != null && combat.IsPlanted)
         {
             velocity.y += gravity * Time.deltaTime;
             characterController.Move(velocity * Time.deltaTime);
-            if (animator) 
+            if (animator)
             {
                 animator.SetFloat("Speed", 0);
             }
@@ -56,9 +72,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
         isGrounded = characterController.isGrounded;
-        if(isGrounded && velocity.y <0) velocity.y = -2;
+        if (isGrounded && velocity.y < 0) velocity.y = -2;
 
         Vector2 moveInput = input.MoveInput;
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
@@ -77,28 +92,47 @@ public class PlayerController : MonoBehaviour
 
         if (move.magnitude > 1) move.Normalize();
 
+        moveSpeed = lockOnSystem.LockMode ? walkSpeed : runSpeed;
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
-        if (move.magnitude > 0.1) 
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        HandleRotation(move);
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        if(animator)
-            animator.SetFloat("Speed", move.magnitude);
+        print(move.magnitude * moveSpeed);
+
+        if (animator)
+            animator.SetFloat("Speed", move.magnitude * moveSpeed);
+    }
+
+    private void HandleRotation(Vector3 move)
+    {
+        if (move.magnitude > 0.1)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void RotateToTarget(Transform currentTarget)
+    {
+        Vector3 dir = lockOnSystem.currentTarget.position - transform.position;
+        dir.y = 0;
+
+        Quaternion lookRot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10f);
     }
 
     private void HandleJump()
     {
-        if (input.JumpPressed && isGrounded) 
+        if (input.JumpPressed && isGrounded)
         {
             velocity.y = jumpForce;
             if (animator)
                 animator.SetTrigger("Jump");
         }
     }
+
+
 }

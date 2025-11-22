@@ -4,8 +4,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 {
     public float startingHealth = 100;
     public float currentHealth;    
-    public GameObject mesh;
-    public ParticleSystem dissolveFX;
+    public GameObject mesh, sandDissolveOBJ;
+    
     public Vector3 Position
     {
         get
@@ -33,8 +33,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        mesh.gameObject.SetActive(false);
-        dissolveFX.Play();
-        Destroy(gameObject,10);
+        Instantiate(sandDissolveOBJ, transform.position, transform.rotation);        
+        Destroy(gameObject);
     }
 }

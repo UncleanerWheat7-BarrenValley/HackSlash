@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -8,6 +9,11 @@ public class PlayerCombat : MonoBehaviour
     public bool isAttacking;
     public bool isSecondaryAttack;
     public bool isPlanted;
+    LockOnSystem lockOnSystem;
+
+    public Gun leftGun;
+    public Gun rightGun;
+    bool UseLeftGun = true;
 
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
@@ -16,13 +22,18 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        lockOnSystem = GetComponent<LockOnSystem>();
     }
 
     private void Update()
     {
         HandleAttack();
-    }
 
+        if (isAttacking) return;
+
+        HandleGunAttack();
+
+    }
     private void HandleAttack()
     {
         // prevent retriggering while mid-animation
@@ -30,6 +41,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (input.AttackPressed)
         {
+            CheckSoftTarget();
             animator.SetTrigger("Attack");
             isAttacking = true;
             isPlanted = true;
@@ -47,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!IsAttacking)
             isSecondaryAttack = true;
-            animator.SetBool("AttackB", isSecondaryAttack);
+        animator.SetBool("AttackB", isSecondaryAttack);
     }
     public void ResetAttackB()
     {
@@ -59,5 +71,41 @@ public class PlayerCombat : MonoBehaviour
     public void ResetPlanted()
     {
         isPlanted = false;
+        lockOnSystem.SoftLockMode = false;
+    }
+
+    public void CheckSoftTarget()
+    {
+        if (lockOnSystem.LockMode) return;
+        lockOnSystem.SoftTarget();
+    }
+
+
+    private void HandleGunAttack()
+    {
+        if (input.GunPressed)
+        {
+            if (lockOnSystem.LockMode == false)
+            {
+                CheckSoftTarget();
+            }
+
+            Gun gunToFire = UseLeftGun ? leftGun : rightGun;
+            UseLeftGun = !UseLeftGun;
+            Vector3 shootDir = GetAimDirection();
+            gunToFire.Fire(shootDir);
+        }
+    }
+
+    private Vector3 GetAimDirection()
+    {
+        if (lockOnSystem.LockMode && lockOnSystem.currentTarget != null)
+        {
+            var target = lockOnSystem.currentTarget.Find("TargetPos");
+            Vector3 dir = (target.position - lockOnSystem.playerCamTarget.position).normalized;
+            return dir;
+        }
+
+        return Camera.main.transform.forward;
     }
 }
