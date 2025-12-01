@@ -19,6 +19,8 @@ public class LockOnSystem : MonoBehaviour
     public bool LockMode = false;
     public bool SoftLockMode = false;
 
+    public Animator animator;
+
     private void Start()
     {
         cinemachineOrbitalFollow = FreeLookCamera.GetComponent<CinemachineOrbitalFollow>();
@@ -33,6 +35,7 @@ public class LockOnSystem : MonoBehaviour
             if (!LockMode)
             {
                 LockMode = true;
+                animator.SetBool("Aim", true);
                 AcquireTarget();
             }
         }
@@ -41,6 +44,7 @@ public class LockOnSystem : MonoBehaviour
             if (LockMode)
             {
                 LockMode = false;
+                animator.SetBool("Aim", false);
                 ClearTarget();
             }
         }
