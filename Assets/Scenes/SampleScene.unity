@@ -745,14 +745,6 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2180756633070918445, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 1751780446}
-    - target: {fileID: 2180756633070918445, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: gunFireSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d050fba2341d44a45b7b589e66faf893, type: 3}
     - target: {fileID: 2271847503761784855, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: animator
       value: 
@@ -761,46 +753,14 @@ PrefabInstance:
       propertyPath: FreeLookCamera
       value: 
       objectReference: {fileID: 1063900087}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Extent.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Extent.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843270077451278646, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_AABB.m_Extent.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3934119154696653299, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 330585546}
     - target: {fileID: 4378191333172375184, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7514323641401517195, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 1751780446}
-    - target: {fileID: 7514323641401517195, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: gunFireSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d050fba2341d44a45b7b589e66faf893, type: 3}
     - target: {fileID: 7526347470855059228, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: m_Volume
       value: 0.16
@@ -1208,11 +1168,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebcbd7c30452a014db9b082578a63887, type: 3}
---- !u!82 &1751780446 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7526347470855059228, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-  m_PrefabInstance: {fileID: 1044568214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

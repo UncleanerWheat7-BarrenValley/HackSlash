@@ -12,17 +12,22 @@ public class PlayerCombat : MonoBehaviour
     LockOnSystem lockOnSystem;
 
     public Gun leftGun;
-    public Gun rightGun;
+    public Gun rightGun;    
     bool UseLeftGun = true;
 
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
     public bool IsPlanted => isPlanted;
 
+    int upperBodyLayer;
+
+    
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         lockOnSystem = GetComponent<LockOnSystem>();
+        upperBodyLayer = animator.GetLayerIndex("TopLayer");
     }
 
     private void Update()
@@ -41,6 +46,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (input.AttackPressed)
         {
+            animator.SetLayerWeight(upperBodyLayer, 0);
             CheckSoftTarget();
             animator.SetTrigger("Attack");
             isAttacking = true;
@@ -72,6 +78,7 @@ public class PlayerCombat : MonoBehaviour
     {
         isPlanted = false;
         lockOnSystem.SoftLockMode = false;
+        animator.SetLayerWeight(upperBodyLayer, 1);
     }
 
     public void CheckSoftTarget()
@@ -91,7 +98,20 @@ public class PlayerCombat : MonoBehaviour
             }
 
             Gun gunToFire = UseLeftGun ? leftGun : rightGun;
+
+            if(UseLeftGun)
+            {
+                animator.SetTrigger("FireLeft");
+            }
+            else
+                animator.SetTrigger("FireRight");
+                
             UseLeftGun = !UseLeftGun;
+
+            
+
+
+
             Vector3 shootDir = GetAimDirection();
             gunToFire.Fire(shootDir);
         }
