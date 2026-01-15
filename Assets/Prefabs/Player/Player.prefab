@@ -192,7 +192,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!96 &2728989870583805085
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -238,6 +238,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -305,7 +306,6 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
@@ -376,7 +376,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!96 &5394682080922594580
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -422,6 +422,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -489,7 +490,6 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
@@ -1448,7 +1448,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d38101e8555a07b468afe0dbacca1f5b, type: 2}
     - target: {fileID: 5148817236446094103, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_Controller
@@ -1488,27 +1488,27 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 796753f2d49f09443af667fe421f8a5c, type: 2}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205140776170859923, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1928,9 +1928,9 @@ CharacterController:
   m_Height: 3
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &7979190372886425209
 MonoBehaviour:
@@ -1980,6 +1980,8 @@ MonoBehaviour:
   isAttacking: 0
   isSecondaryAttack: 0
   isPlanted: 0
+  useStingerForce: 0
+  stingerForce: 10
   leftGun: {fileID: 2180756633070918445}
   rightGun: {fileID: 7514323641401517195}
 --- !u!114 &2271847503761784855

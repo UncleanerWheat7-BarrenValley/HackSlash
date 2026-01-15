@@ -4,15 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("References")]
-    public PlayerInputHandler input;
+    [Header("References")] public PlayerInputHandler input;
     public Transform cameraTransform;
 
     private CharacterController characterController;
     private Animator animator;
 
-    [Header("Movement Settings")]
-    public float moveSpeed = 7f;
+    [Header("Movement Settings")] public float moveSpeed = 7f;
     public float runSpeed = 7;
     public float walkSpeed = 3;
     public float rotationSpeed = 12f;
@@ -24,6 +22,10 @@ public class PlayerController : MonoBehaviour
 
     private PlayerCombat combat;
     LockOnSystem lockOnSystem;
+
+    private Transform activePlatform;
+    private Vector3 lastPlatformPosition;
+    private CharacterController controller;
 
     private void Awake()
     {
@@ -42,8 +44,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        ApplyPlatformMotion();
         HandleJump();
+        HandleMovement();
     }
 
     private void LateUpdate()
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
             {
                 RotateToTarget(lockOnSystem.currentTarget);
             }
+
             return;
         }
     }
@@ -106,8 +110,21 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", move.magnitude * moveSpeed);
     }
 
+   
+
+    private void ApplyPlatformMotion()
+    {
+        if (activePlatform == null) return;
+        Vector3 delta = activePlatform.position - lastPlatformPosition;
+        if (delta != Vector3.zero)
+            characterController.Move(delta);
+        lastPlatformPosition = activePlatform.position;
+    }
+
     private void HandleRotation(Vector3 move)
     {
+        if (lockOnSystem.LockMode) return;
+
         if (move.magnitude > 0.1)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
@@ -135,4 +152,23 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    //////////////////////////////// 
+    /// moving platform stuff
+    //////////////////////////////////
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MovingPlatform"))
+        {
+            activePlatform = other.transform;
+            lastPlatformPosition = activePlatform.position;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform == activePlatform)
+        {
+            activePlatform = null;
+        }
+    }
 }

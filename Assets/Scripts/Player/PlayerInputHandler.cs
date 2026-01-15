@@ -29,8 +29,8 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnDisable() => inputActions.Gameplay.Disable();
     private void Update()
     {
-        if (LookInput != Vector2.zero)
-            Debug.Log("Look input: " + LookInput);
+        // if (LookInput != Vector2.zero)
+        //     Debug.Log("Look input: " + LookInput);
     }
     private void LateUpdate()
     {
