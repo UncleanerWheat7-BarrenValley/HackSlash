@@ -26,7 +26,7 @@ public class GunCombat : MonoBehaviour
         {
             if (lockOnSystem.LockMode == false)
             {
-                CheckSoftTarget();
+                lockOnSystem.SoftTarget();
             }
 
             Gun gunToFire = UseLeftGun ? leftGun : rightGun;
@@ -42,11 +42,6 @@ public class GunCombat : MonoBehaviour
             Vector3 shootDir = GetAimDirection();
             gunToFire.Fire(shootDir);
         }
-    }
-    public void CheckSoftTarget()
-    {
-        if (lockOnSystem.LockMode) return;
-        lockOnSystem.SoftTarget();
     }
     
     private Vector3 GetAimDirection()

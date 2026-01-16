@@ -6,7 +6,7 @@ public class SwordCombat : MonoBehaviour
     public PlayerInputHandler input;
     private SwordCombat swordCombat;
     public Animator animator;
-    private CharacterController characterController;
+    public CharacterController characterController;
     public LocalForwardHelper forwardHelper;
     public bool isAttacking;
     public bool isSecondaryAttack;
@@ -18,10 +18,16 @@ public class SwordCombat : MonoBehaviour
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
     
-    int upperBodyLayer;
+    int upperBodyLayer = 1;
     
     public void HandleAttack()
     {
+        if (useStingerForce)
+        {
+            HandleStinger();
+            return;
+        }
+
         // prevent retriggering while mid-animation
         if (isAttacking) return;
 
@@ -53,18 +59,12 @@ public class SwordCombat : MonoBehaviour
             else
             {
                 animator.SetLayerWeight(upperBodyLayer, 0);
-                CheckSoftTarget();
+                lockOnSystem.SoftTarget();
                 animator.SetTrigger("Attack");
                 isAttacking = true;
                 isPlanted = true;
             }
         }
-    }
-    
-    public void CheckSoftTarget()
-    {
-        if (lockOnSystem.LockMode) return;
-        lockOnSystem.SoftTarget();
     }
     
     private void HandleStinger()

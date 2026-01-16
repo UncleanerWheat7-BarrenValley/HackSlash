@@ -1550,6 +1550,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2271847503761784855}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4616086173764934800}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3765406365147504609}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4136387838828812076}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3460318071940409458}
     - targetCorrespondingSourceObject: {fileID: -6763858364670572316, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1439680799228723288}
@@ -1976,14 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf9001ff9962b64fb2ef65ec3b3ab53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  input: {fileID: 7979190372886425209}
-  isAttacking: 0
-  isSecondaryAttack: 0
   isPlanted: 0
-  useStingerForce: 0
-  stingerForce: 10
-  leftGun: {fileID: 2180756633070918445}
-  rightGun: {fileID: 7514323641401517195}
 --- !u!114 &2271847503761784855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,6 +2012,71 @@ MonoBehaviour:
   LockMode: 0
   SoftLockMode: 0
   animator: {fileID: 3088525434722807830}
+--- !u!114 &4616086173764934800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608448155763405014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bb1624262caf6e5a5c78500e915b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalForwardHelper
+  input: {fileID: 7979190372886425209}
+  mainCam: {fileID: 0}
+--- !u!114 &3765406365147504609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608448155763405014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430902ee5a0e2c14cba5839484d383d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordCombat
+  input: {fileID: 7979190372886425209}
+  animator: {fileID: 3088525434722807830}
+  forwardHelper: {fileID: 4616086173764934800}
+  isAttacking: 0
+  isSecondaryAttack: 0
+  isPlanted: 0
+  useStingerForce: 0
+  stingerForce: 10
+  lockOnSystem: {fileID: 2271847503761784855}
+  upperBodyLayer: 1
+--- !u!114 &4136387838828812076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608448155763405014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1a70859a8a4574fa787eaa55f503ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunCombat
+  leftGun: {fileID: 2180756633070918445}
+  rightGun: {fileID: 7514323641401517195}
+  input: {fileID: 7979190372886425209}
+  lockOnSystem: {fileID: 2271847503761784855}
+  animator: {fileID: 3088525434722807830}
+--- !u!114 &3460318071940409458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608448155763405014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282603813783ba6fcaf090012aa71014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!4 &8952181137826163308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
