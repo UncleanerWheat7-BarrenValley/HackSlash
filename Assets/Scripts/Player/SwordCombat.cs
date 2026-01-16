@@ -17,8 +17,10 @@ public class SwordCombat : MonoBehaviour
     public LockOnSystem lockOnSystem;
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
+    public WeaponHitBox weaponHitBox;
     
     int upperBodyLayer = 1;
+    public int hightimeImpulseForce;
     
     public void HandleAttack()
     {
@@ -46,6 +48,7 @@ public class SwordCombat : MonoBehaviour
                 {
                     animator.SetLayerWeight(upperBodyLayer, 0);
                     animator.SetTrigger("HighTime");
+                    weaponHitBox.impulseForce = hightimeImpulseForce;
                     isPlanted = true;
                 }
                 else
@@ -84,14 +87,13 @@ public class SwordCombat : MonoBehaviour
     {
         print("High Timing");
         RaycastHit objectHit;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(transform.position + Vector3.up * 1, fwd * 5, Color.green);
-        if (Physics.Raycast(transform.position + Vector3.up * 1, fwd, out objectHit, 50))
-        {
-            print(objectHit.transform.name);
-        }
     }
-    
+
+    void LaunchEnemy(Rigidbody enemyRigidBody)
+    {
+        enemyRigidBody.AddForce(Vector3.up * 100, ForceMode.Impulse);
+    }
+
     /////////////////////////////////////////////////////
     /// reset functions
 /////////////////////////////////////////////////////
