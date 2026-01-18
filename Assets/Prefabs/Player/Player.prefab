@@ -87,15 +87,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2991880086117500764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5015803, y: 0.23301396, z: -0.42898872, w: -0.71420616}
-  m_LocalPosition: {x: 0.000595, y: 0.001274, z: 0.000807}
+  m_LocalRotation: {x: 0.42318603, y: 0.5150429, z: -0.47493428, w: -0.5745275}
+  m_LocalPosition: {x: 0.00099, y: 0.00194, z: 0.00028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9041115822642517732}
   - {fileID: 7282317821409967291}
   m_Father: {fileID: 7152046592522911044}
-  m_LocalEulerAnglesHint: {x: -31.101, y: 296.963, z: 81.351}
+  m_LocalEulerAnglesHint: {x: 0.17, y: -83.61, z: -280.99402}
 --- !u!1 &6199826483644355778
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHitBox
   damage: 10
+  impulseForce: 0
   sandSlashFX: {fileID: 6798844984980178960, guid: bf113c55967fecd49acdf8b3bef48846, type: 3}
 --- !u!65 &5850944924999352242
 BoxCollider:
@@ -664,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHitBox
   damage: 10
+  impulseForce: 0
   sandSlashFX: {fileID: 6798844984980178960, guid: bf113c55967fecd49acdf8b3bef48846, type: 3}
 --- !u!1001 &5993220461971527165
 PrefabInstance:
@@ -687,43 +689,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00218
+      value: 0.0021286032
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00135
+      value: -0.0013363019
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00025
+      value: -0.00022174662
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0774758
+      value: 0.11851761
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.70590943
+      value: -0.7485371
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.07796143
+      value: 0.024235992
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6997224
+      value: -0.65196496
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.016
+      value: -171.615
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90.503
+      value: -82.929016
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 167.38
+      value: 11.121002
       objectReference: {fileID: 0}
     - target: {fileID: 3901189542174615878, guid: 3dd6907156aec0340a7fa6c392cea04b, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -773,6 +775,7 @@ MonoBehaviour:
   audioSource: {fileID: 7526347470855059228}
   gunFireSound: {fileID: 8300000, guid: d050fba2341d44a45b7b589e66faf893, type: 3}
   muzzleFlash: {fileID: 1703365624498788154, guid: 166c093e9e867f12e92bce480e1fead2, type: 3}
+  enemyHealth: {fileID: 0}
 --- !u!82 &7526347470855059228
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1019,43 +1022,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00171
+      value: -0.00234
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00178
+      value: -0.00132
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00082
+      value: -0.00063
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.07771658
+      value: 0.05000858
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.702823
+      value: -0.6975806
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.07771658
+      value: -0.11567764
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.702823
+      value: 0.7053362
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 5.36
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3353899156929303659, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 167.38
+      value: 166.529
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652757520051121791, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000133
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652757520051121791, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000108
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652757520051121791, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00089
       objectReference: {fileID: 0}
     - target: {fileID: 3830347768722759673, guid: c13443f3bbc32b74bac63792b84b2496, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1096,6 +1111,7 @@ MonoBehaviour:
   audioSource: {fileID: 7526347470855059228}
   gunFireSound: {fileID: 8300000, guid: d050fba2341d44a45b7b589e66faf893, type: 3}
   muzzleFlash: {fileID: 1703365624498788154, guid: 166c093e9e867f12e92bce480e1fead2, type: 3}
+  enemyHealth: {fileID: 0}
 --- !u!82 &869733177866789379
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1329,6 +1345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHitBox
   damage: 10
+  impulseForce: 0
   sandSlashFX: {fileID: 6798844984980178960, guid: bf113c55967fecd49acdf8b3bef48846, type: 3}
 --- !u!65 &4830042562477604259
 BoxCollider:
@@ -1364,6 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHitBox
   damage: 10
+  impulseForce: 0
   sandSlashFX: {fileID: 6798844984980178960, guid: bf113c55967fecd49acdf8b3bef48846, type: 3}
 --- !u!4 &9041115822642517732 stripped
 Transform:
@@ -1561,7 +1579,7 @@ PrefabInstance:
       addedObject: {fileID: 4136387838828812076}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3460318071940409458}
+      addedObject: {fileID: 9078604292083542639}
     - targetCorrespondingSourceObject: {fileID: -6763858364670572316, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1439680799228723288}
@@ -2040,6 +2058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordCombat
   input: {fileID: 7979190372886425209}
   animator: {fileID: 3088525434722807830}
+  characterController: {fileID: 0}
   forwardHelper: {fileID: 4616086173764934800}
   isAttacking: 0
   isSecondaryAttack: 0
@@ -2047,7 +2066,8 @@ MonoBehaviour:
   useStingerForce: 0
   stingerForce: 10
   lockOnSystem: {fileID: 2271847503761784855}
-  upperBodyLayer: 1
+  weaponHitBox: {fileID: 0}
+  hightimeImpulseForce: 0
 --- !u!114 &4136387838828812076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,7 +2085,7 @@ MonoBehaviour:
   input: {fileID: 7979190372886425209}
   lockOnSystem: {fileID: 2271847503761784855}
   animator: {fileID: 3088525434722807830}
---- !u!114 &3460318071940409458
+--- !u!114 &9078604292083542639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2074,9 +2094,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8608448155763405014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603813783ba6fcaf090012aa71014, type: 3}
+  m_Script: {fileID: 11500000, guid: cc68352017d83a1e490c2fd405e87439, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::AimIK
+  lockOnSystem: {fileID: 2271847503761784855}
+  target: {fileID: 0}
+  animator: {fileID: 3088525434722807830}
+  headWeight: 1
+  bodyWeight: 0.5
+  handWeight: 1
+  rightHandTransform: {fileID: 7152046592522911044}
+  leftHandTransform: {fileID: 8337811024550322015}
+  offsetNumberThing: 0
 --- !u!4 &8952181137826163308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}

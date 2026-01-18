@@ -12,16 +12,16 @@ public class SwordCombat : MonoBehaviour
     public bool isSecondaryAttack;
     public bool isPlanted;
     public bool useStingerForce = false;
-    
+
     public float stingerForce = 10;
     public LockOnSystem lockOnSystem;
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
     public WeaponHitBox weaponHitBox;
-    
+
     int upperBodyLayer = 1;
-    public int hightimeImpulseForce;
-    
+    public float hightimeImpulseForce;
+
     public void HandleAttack()
     {
         if (useStingerForce)
@@ -40,36 +40,34 @@ public class SwordCombat : MonoBehaviour
                 float localZ = forwardHelper.GetLocalMoveZ();
                 if (localZ > 0.5f)
                 {
-                    animator.SetLayerWeight(upperBodyLayer, 0);
-                    animator.SetTrigger("Stinger");
-                    isPlanted = true;
+                    StartAttack("Stinger", 0);
                 }
                 else if (localZ < -0.5f)
                 {
-                    animator.SetLayerWeight(upperBodyLayer, 0);
-                    animator.SetTrigger("HighTime");
-                    weaponHitBox.impulseForce = hightimeImpulseForce;
-                    isPlanted = true;
+                    StartAttack("HighTime", hightimeImpulseForce);
                 }
                 else
                 {
-                    animator.SetLayerWeight(upperBodyLayer, 0);
-                    animator.SetTrigger("Attack");
-                    isAttacking = true;
-                    isPlanted = true;
+                    StartAttack("Attack", 0);
                 }
             }
             else
             {
-                animator.SetLayerWeight(upperBodyLayer, 0);
-                lockOnSystem.SoftTarget();
-                animator.SetTrigger("Attack");
-                isAttacking = true;
-                isPlanted = true;
+                StartAttack("Attack", 0);
             }
         }
     }
-    
+
+    void StartAttack(string animationName, float impulseForce)
+    {
+        animator.SetLayerWeight(upperBodyLayer, 0);
+        lockOnSystem.SoftTarget();
+        animator.SetTrigger(animationName);
+        isAttacking = true;
+        isPlanted = true;
+        weaponHitBox.impulseForce = impulseForce;
+    }
+
     private void HandleStinger()
     {
         if (!useStingerForce) return;
@@ -87,11 +85,6 @@ public class SwordCombat : MonoBehaviour
     {
         print("High Timing");
         RaycastHit objectHit;
-    }
-
-    void LaunchEnemy(Rigidbody enemyRigidBody)
-    {
-        enemyRigidBody.AddForce(Vector3.up * 100, ForceMode.Impulse);
     }
 
     /////////////////////////////////////////////////////
