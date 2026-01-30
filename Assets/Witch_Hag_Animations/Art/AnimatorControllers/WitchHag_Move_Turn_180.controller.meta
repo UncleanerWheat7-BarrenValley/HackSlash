@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d099aebb43738e346b87d7241c0a03e0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Move_Turn_180.controller
+  uploadId: 608239

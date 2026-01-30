@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3328980ad229268408f743ec5d54216a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 327467
+  packageName: Modular Dungeon (Gothic Dungeon, Medieval Dungeon, Fantasy Dungeon,
+    Dungeon)
+  packageVersion: 1.0
+  assetPath: Assets/HIVEMIND/HallowedDepths/HDRP(Default)/Animations/SM_Door_Crypt_rightdoor.controller
+  uploadId: 775964

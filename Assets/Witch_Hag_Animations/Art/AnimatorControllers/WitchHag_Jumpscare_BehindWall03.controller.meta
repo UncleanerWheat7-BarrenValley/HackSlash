@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 71896e9087ed6a7449683a5526ea050a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Jumpscare_BehindWall03.controller
+  uploadId: 608239

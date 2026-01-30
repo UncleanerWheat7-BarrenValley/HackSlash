@@ -107,10 +107,16 @@ public class PlayerController : MonoBehaviour
         print(move.magnitude * moveSpeed);
 
         if (animator)
-            animator.SetFloat("Speed", move.magnitude * moveSpeed);
+        {
+            Vector3 moveDir = move.normalized;
+            float forwardDot = Vector3.Dot(transform.forward, moveDir);
+            float rightDot = Vector3.Dot(transform.right, moveDir);
+
+            animator.SetFloat("Speed", forwardDot * moveSpeed);
+            animator.SetFloat("XSpeed", rightDot * moveSpeed);
+        }
     }
 
-   
 
     private void ApplyPlatformMotion()
     {

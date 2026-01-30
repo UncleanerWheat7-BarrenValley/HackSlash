@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49c950824f4457a4bb92a2bfcc3ca8c2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Jumpscare_StandingArms03.controller
+  uploadId: 608239

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8d5094185eb026c4ba38271257c5a2e9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Victim_ForceChoked.controller
+  uploadId: 608239

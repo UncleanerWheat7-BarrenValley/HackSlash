@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9eda54ae2144783448fa654f1922f07f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Jumpscare_LeaningOnTableLunge_Start.controller
+  uploadId: 608239

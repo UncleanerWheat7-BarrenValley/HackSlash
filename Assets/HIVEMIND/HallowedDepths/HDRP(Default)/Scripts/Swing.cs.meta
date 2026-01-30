@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2e62ade3ff10be84292fbdaca8e27fe9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 327467
+  packageName: Modular Dungeon (Gothic Dungeon, Medieval Dungeon, Fantasy Dungeon,
+    Dungeon)
+  packageVersion: 1.0
+  assetPath: Assets/HIVEMIND/HallowedDepths/HDRP(Default)/Scripts/Swing.cs
+  uploadId: 775964

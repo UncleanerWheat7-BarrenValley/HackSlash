@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6a51c4636f03b6d46a5cae540c7fc95c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Paired_Stab_OnTable_Attacker.controller
+  uploadId: 608239

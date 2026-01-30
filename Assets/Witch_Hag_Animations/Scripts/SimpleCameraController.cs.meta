@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3d3d0f7030f30d748acb1e7e7a459e6d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Scripts/SimpleCameraController.cs
+  uploadId: 608239

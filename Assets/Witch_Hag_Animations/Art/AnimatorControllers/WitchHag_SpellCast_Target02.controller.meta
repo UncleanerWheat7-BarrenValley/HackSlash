@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5f3c65ea461351c47b13ef53d231ddd5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_SpellCast_Target02.controller
+  uploadId: 608239

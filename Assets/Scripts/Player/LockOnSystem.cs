@@ -20,10 +20,12 @@ public class LockOnSystem : MonoBehaviour
     public bool SoftLockMode = false;
 
     public Animator animator;
+    public AimIK aimIK;
 
     private void Start()
     {
         cinemachineOrbitalFollow = FreeLookCamera.GetComponent<CinemachineOrbitalFollow>();
+        aimIK = GetComponent<AimIK>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -98,6 +100,7 @@ public class LockOnSystem : MonoBehaviour
         }
 
         currentTarget = best;
+        aimIK.target = best;
 
         if (currentTarget && LockMode)
         {

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: db9eadcdc5750af419e19f83e5cb5a04
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Jumpscare_LungeForward01.controller
+  uploadId: 608239

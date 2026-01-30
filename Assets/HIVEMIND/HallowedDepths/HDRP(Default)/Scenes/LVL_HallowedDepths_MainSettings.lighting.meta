@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bbfa3b80033d177438a7f2ee668719b5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 327467
+  packageName: Modular Dungeon (Gothic Dungeon, Medieval Dungeon, Fantasy Dungeon,
+    Dungeon)
+  packageVersion: 1.0
+  assetPath: Assets/HIVEMIND/HallowedDepths/HDRP(Default)/Scenes/LVL_HallowedDepths_MainSettings.lighting
+  uploadId: 775964

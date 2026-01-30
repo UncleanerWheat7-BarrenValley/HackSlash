@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b9e92d6b423a5ba49b558f50a99a0e9b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/AnimatorControllers/WitchHag_Jumpscare_SquatToStand01.controller
+  uploadId: 608239

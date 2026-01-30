@@ -7,10 +7,10 @@ public class Gun : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip gunFireSound;
     public GameObject muzzleFlash;
+    public EnemyHealth enemyHealth;
 
-    
 
-    public void Fire(Vector3 direction) 
+    public void Fire(Vector3 direction)
     {
         //play muzzle flash
         GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
@@ -20,12 +20,18 @@ public class Gun : MonoBehaviour
         audioSource.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(firePoint.position, direction, out hit, 100f)) 
+        if (Physics.Raycast(firePoint.position, direction, out hit, 100f))
         {
             var dmg = hit.collider.GetComponent<IDamageable>();
-            if (dmg != null) 
+            enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            if (dmg != null)
             {
                 dmg.Damage(1);
+
+                if (enemyHealth.CheckGrounded()) return;
+
+                enemyHealth.ApplyImpulse(1.5f);
+                enemyHealth.ReduceImpulseInfluence();
             }
         }
     }
