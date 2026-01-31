@@ -30,7 +30,7 @@ public class Gun : MonoBehaviour
 
                 if (enemyHealth.CheckGrounded()) return;
 
-                enemyHealth.ApplyImpulse(1.5f);
+                enemyHealth.ApplyImpulse(1.5f, transform.parent);
                 enemyHealth.ReduceImpulseInfluence();
             }
         }

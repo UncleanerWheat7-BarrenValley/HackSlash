@@ -4,8 +4,10 @@ using UnityEngine.AI;
 
 public class ZombieFSM : FSM
 {
-    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int SpeedAnim = Animator.StringToHash("Speed");
     private static readonly int AttackAnim = Animator.StringToHash("Attack");
+    private static readonly int LaunchedUpAnim = Animator.StringToHash("LaunchedUp");
+    int StandUpStateHash = Animator.StringToHash("Base Layer.StandUp");
 
     public enum FSMState
     {
@@ -13,7 +15,8 @@ public class ZombieFSM : FSM
         Wander,
         Chase,
         Attack,
-        Staggered,
+        LaunchedUp,
+        Recovery,
         Dead,
     }
 
@@ -34,10 +37,53 @@ public class ZombieFSM : FSM
     public float attackRadius = 2;
     public float playerNearRadius = 30;
     Animator animator;
-    NavMeshAgent agent;
+    public EnemyHealth enemyHealth;
+    private bool standUpStarted;
+
+    private FSMState previousState;
+
+    private void StateEnter(FSMState newState)
+    {
+        // Reset all animation bools
+        animator.SetBool(AttackAnim, false);
+        animator.SetBool(LaunchedUpAnim, false);
+
+        // Set the appropriate animation bool for the new state
+        switch (newState)
+        {
+            case FSMState.Idle:
+                speed = 0;
+                break;
+            case FSMState.Wander:
+                speed = 1;
+                break;
+            case FSMState.Chase:
+                speed = 3;
+                break;
+            case FSMState.Attack:
+                speed = 0;
+                animator.SetBool(AttackAnim, true);
+                break;
+            case FSMState.LaunchedUp:
+                speed = 0;
+                animator.SetBool(LaunchedUpAnim, true);
+                break;
+            case FSMState.Recovery:
+                standUpStarted = false;
+                speed = 0;
+                break;
+            case FSMState.Dead:
+                speed = 0;
+                break;
+        }
+
+        animator.SetFloat(SpeedAnim, speed);
+    }
+
 
     protected override void Initialize()
     {
+        enemyHealth = GetComponent<EnemyHealth>();
         pointList = GameObject.FindGameObjectsWithTag("WanderPoint");
         baseFSM = GetComponent<FSM>();
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -48,32 +94,41 @@ public class ZombieFSM : FSM
             print("Player not found. does your player obj have the tag 'Player'?");
         }
 
+        enemyHealth.OnHighTime.AddListener(() => currentState = FSMState.LaunchedUp);
+        enemyHealth.OnHighTimeLand.AddListener(() => currentState = FSMState.Recovery);
         animator = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        previousState = currentState;
     }
 
     protected override void FSMUpdate()
     {
+        if (previousState != currentState)
+        {
+            StateEnter(currentState); // Call the StateEnter function
+            previousState = currentState;
+        }
+
         switch (currentState)
         {
             case FSMState.Idle:
-                animator.SetFloat(Speed, 0);
                 Idle();
                 break;
             case FSMState.Wander:
-                animator.SetFloat(Speed, 2);
                 Wander();
                 break;
             case FSMState.Chase:
-                animator.SetFloat(Speed, 5);
                 Chase();
                 break;
             case FSMState.Attack:
-                animator.SetFloat(Speed, 0);
                 Attack();
                 break;
+            case FSMState.LaunchedUp:
+                LaunchedUp();
+                break;
+            case FSMState.Recovery:
+                Recovery();
+                break;
             case FSMState.Dead:
-                animator.SetFloat(Speed, 0);
                 Dead();
                 break;
         }
@@ -81,39 +136,61 @@ public class ZombieFSM : FSM
         elapsedTime += Time.deltaTime;
     }
 
+    private void Recovery()
+    {
+        if (animator.IsInTransition(0))
+            return;
+
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+
+        // Phase 1: wait for StandUp to begin
+        if (!standUpStarted)
+        {
+            if (info.fullPathHash == StandUpStateHash)
+            {
+                standUpStarted = true;
+            }
+            return;
+        }
+
+        // Phase 2: wait for StandUp to finish
+        if (info.fullPathHash == StandUpStateHash &&
+            info.normalizedTime < 1f)
+        {
+            return;
+        }
+
+        // Phase 3: safe to exit
+        currentState = FSMState.Wander;
+    }
+
     private void Dead()
     {
+        //change to dead animation and turn off collision with player etc
     }
 
     private void Attack()
     {
         targetPosition = playerTransform.position;
         Vector3 frontVector = Vector3.forward;
-
         float dist = Vector3.Distance(transform.position, targetPosition);
         if (dist >= attackRadius && dist < playerNearRadius)
         {
-            animator.SetBool(AttackAnim, false);
             currentState = FSMState.Chase;
             return;
         }
         else if (dist >= playerNearRadius)
         {
-            animator.SetBool(AttackAnim, false);
             currentState = FSMState.Wander;
             return;
         }
 
-        Quaternion targetRotation = Quaternion.FromToRotation(frontVector, targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
-        animator.SetBool(AttackAnim, true);
+        SetRotation();
     }
 
     private void Chase()
     {
-        agent.speed = chaseSpeed;
         targetPosition = playerTransform.position;
-        Vector3 frontVector = Vector3.forward;
 
         float dist = Vector3.Distance(transform.position, targetPosition);
         if (dist <= attackRadius)
@@ -125,14 +202,22 @@ public class ZombieFSM : FSM
             currentState = FSMState.Wander;
         }
 
-        Quaternion targetRotation = Quaternion.FromToRotation(frontVector, targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+        SetRotation();
+    }
+
+    private void SetRotation()
+    {
+        Quaternion targetRotation = Quaternion.FromToRotation(Vector3.forward, targetPosition - transform.position);
+        Vector3 eular = targetRotation.eulerAngles;
+        eular.x = 0;
+        eular.z = 0;
+        Quaternion flattenedRot = Quaternion.Euler(eular);
+        transform.rotation = Quaternion.Slerp(transform.rotation, flattenedRot, Time.deltaTime * rotateSpeed);
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
     private void Wander()
     {
-        agent.speed = speed;
         if (Vector3.Distance(transform.position, targetPosition) <= patrolRadius)
         {
             print("Reached patrol point");
@@ -145,15 +230,21 @@ public class ZombieFSM : FSM
         }
 
         // rotate to target
-        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
-
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        SetRotation();
     }
 
     private void Idle()
     {
-        agent.speed = 0;
+        if (Vector3.Distance(transform.position, playerTransform.position) <= playerNearRadius)
+        {
+            print("switch to chase");
+            currentState = FSMState.Chase;
+        }
+    }
+
+    private void LaunchedUp()
+    {
+        //turn off movement and enter the LaunchedUp animation or whatever
     }
 
     protected override void FSMFixedUpdate()

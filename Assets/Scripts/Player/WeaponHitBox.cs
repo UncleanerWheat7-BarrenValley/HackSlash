@@ -13,9 +13,9 @@ public class WeaponHitBox : MonoBehaviour
         {
             target.Damage(damage);
             SpawnSlashFX(other);
-            print("force " + impulseForce );
+            
             enemyHealth.ResetImpulseInfluence();
-            enemyHealth.ApplyImpulse(impulseForce);
+            enemyHealth.ApplyImpulse(impulseForce, transform.parent);
         }
     }
 
