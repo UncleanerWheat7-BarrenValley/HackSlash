@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 0eea8d06dcafb5e4189afc53acaf8670
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262198
+  packageName: Witch Hag Animations
+  packageVersion: 1.0
+  assetPath: Assets/Witch_Hag_Animations/Art/Animations/WitchHag_HitReact_Stagger_Forward01.fbx
+  uploadId: 608239
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -16,13 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 25.320183 mm\n\t'calf_l' : position error = 7.972620 mm\n\t'foot_l'
-      : position error = 8.571012 mm\n\t'ball_l' : position error = 40.896450 mm\n\t'thigh_r'
-      : position error = 25.321697 mm\n\t'calf_r' : position error = 7.964408 mm\n\t'foot_r'
-      : position error = 8.575840 mm\n\t'ball_r' : position error = 40.912220 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -57,14 +57,14 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -100,6 +100,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -859,8 +862,7 @@ ModelImporter:
     - name: ik_hand_r
       parentName: ik_hand_gun
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.000000111758695, y: -0.000000007450585, z: 0.000000029802326,
-        w: 1}
+      rotation: {x: -0.000000111758695, y: -0.000000007450585, z: 0.000000029802326, w: 1}
       scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
     - name: ik_hand_l
       parentName: ik_hand_gun
@@ -894,8 +896,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2961c0373b69f844d9267a76312889ee,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2961c0373b69f844d9267a76312889ee, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -907,10 +908,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 262198
-  packageName: Witch Hag Animations
-  packageVersion: 1.0
-  assetPath: Assets/Witch_Hag_Animations/Art/Animations/WitchHag_HitReact_Stagger_Forward01.fbx
-  uploadId: 608239

@@ -4645,9 +4645,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: staggerForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: staggerDuration
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802798537268288256, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: startingHealth
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1971987059335254125, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_LocalPosition.x

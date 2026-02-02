@@ -19,9 +19,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private float groundCheckDistance = 0.4f;
     [SerializeField] private LayerMask groundLayer;
     private float impulseInfluence = 1;
+    public Vector3 LastHitDirection { get; private set; }
 
     public UnityEvent OnHighTime;
     public UnityEvent OnHighTimeLand;
+    public UnityEvent OnStagger;
 
     public Vector3 Position
     {
@@ -57,12 +59,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void ApplyImpulse(float force, Transform attacker)
     {
+        LastHitDirection = (transform.position - attacker.position).normalized;
         FacePlayer(attacker);
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        if (force > 0)
+        if (force <= 0)
+        {
+            OnStagger.Invoke();
+        }
+        else if (force > 0)
         {
             OnHighTime.Invoke();
             StartCoroutine(CheckForLanding());
