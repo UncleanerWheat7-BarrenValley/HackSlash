@@ -12,6 +12,7 @@ public class ZombieFSM : FSM
     private static readonly int HitX = Animator.StringToHash("HitX");
     private static readonly int HitY = Animator.StringToHash("HitY");
     int StandUpStateHash = Animator.StringToHash("Base Layer.StandUp");
+    
 
     public enum FSMState
     {
@@ -25,9 +26,12 @@ public class ZombieFSM : FSM
         Dead,
     }
 
+    private IHitReaction hitReaction;
     public FSMState currentState = FSMState.Idle;
     public float speed = 2.0f;
-    public float chaseSpeed = 5.0f;
+    public float idleSpeed = 0;
+    public float walkSpeed = 1;
+    public float chaseSpeed = 3.0f;
     public float rotateSpeed = 2.0f;
     private bool isDead = false;
     protected float elapsedTime = 0;
@@ -44,12 +48,30 @@ public class ZombieFSM : FSM
     Animator animator;
     public EnemyHealth enemyHealth;
     private bool standUpStarted;
-    [SerializeField] private float staggerDuration = 1.6f;
-    private float staggerTimer;
-    private float hitX, hitZ;
-    public float staggerForce;
 
     private FSMState previousState;
+    
+    protected override void Initialize()
+    {
+        hitReaction = GetComponent<IHitReaction>();
+        enemyHealth = GetComponent<EnemyHealth>();
+        pointList = GameObject.FindGameObjectsWithTag("WanderPoint");
+        baseFSM = GetComponent<FSM>();
+        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        rigidBody = GetComponent<Rigidbody>();
+        playerTransform = objPlayer.transform;
+        if (!playerTransform)
+        {
+            print("Player not found. does your player obj have the tag 'Player'?");
+        }
+
+        enemyHealth.OnHighTime.AddListener(() => currentState = FSMState.LaunchedUp);
+        enemyHealth.OnHighTimeLand.AddListener(() => currentState = FSMState.Recovery);
+        enemyHealth.OnStagger.AddListener(HandleStagger);
+
+        animator = GetComponent<Animator>();
+        previousState = currentState;
+    }
 
     private void StateEnter(FSMState newState)
     {
@@ -61,74 +83,36 @@ public class ZombieFSM : FSM
         switch (newState)
         {
             case FSMState.Idle:
-                speed = 0;
+                speed = idleSpeed;
                 break;
             case FSMState.Wander:
-                speed = 1;
+                speed = walkSpeed;
                 break;
             case FSMState.Chase:
-                speed = 3;
+                speed = chaseSpeed;
                 break;
             case FSMState.Attack:
-                speed = 0;
+                speed = idleSpeed;
                 animator.SetBool(AttackAnim, true);
                 break;
             case FSMState.Stagger:
-                speed = 0;
-                staggerTimer = 0f;
-                GetHitDirection(out hitX, out hitZ);
-                Vector3 vect =  new Vector3(hitX, 0, hitZ);
-                ApplyKnockback(vect);
-                animator.SetBool(Hit, true);
-                animator.SetFloat(HitY, hitX);
-                animator.SetFloat(HitY, hitZ);
+                speed = idleSpeed;
+                hitReaction.Begin();
                 break;
             case FSMState.LaunchedUp:
-                speed = 0;
+                speed = idleSpeed;
                 animator.SetBool(LaunchedUpAnim, true);
                 break;
             case FSMState.Recovery:
                 standUpStarted = false;
-                speed = 0;
+                speed = idleSpeed;
                 break;
             case FSMState.Dead:
-                speed = 0;
+                speed = idleSpeed;
                 break;
         }
 
         animator.SetFloat(SpeedAnim, speed);
-    }
-
-    private void GetHitDirection(out float hitX, out float hitY)
-    {
-        Vector3 localHitDir =
-            transform.InverseTransformDirection(enemyHealth.LastHitDirection);
-
-        localHitDir.y = 0f;
-        localHitDir.Normalize();
-
-        float forwardDot = Vector3.Dot(Vector3.forward, localHitDir);
-        float rightDot = Vector3.Dot(Vector3.right, localHitDir);
-
-        // Decide dominant axis
-        if (Mathf.Abs(forwardDot) > Mathf.Abs(rightDot))
-        {
-            hitX = 0f;
-            hitY = forwardDot > 0f ? 1f : -1f;
-        }
-        else
-        {
-            hitX = rightDot > 0f ? 1f : -1f;
-            hitY = 0f;
-        }
-    }
-
-    public void ApplyKnockback(Vector3 direction)
-    {
-        rigidBody.linearVelocity = Vector3.zero;
-        rigidBody.angularVelocity = Vector3.zero;
-
-        rigidBody.AddForce(direction * staggerForce, ForceMode.Impulse);
     }
 
     private void StateExit(FSMState oldState)
@@ -152,26 +136,7 @@ public class ZombieFSM : FSM
     }
 
 
-    protected override void Initialize()
-    {
-        enemyHealth = GetComponent<EnemyHealth>();
-        pointList = GameObject.FindGameObjectsWithTag("WanderPoint");
-        baseFSM = GetComponent<FSM>();
-        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
-        rigidBody = GetComponent<Rigidbody>();
-        playerTransform = objPlayer.transform;
-        if (!playerTransform)
-        {
-            print("Player not found. does your player obj have the tag 'Player'?");
-        }
 
-        enemyHealth.OnHighTime.AddListener(() => currentState = FSMState.LaunchedUp);
-        enemyHealth.OnHighTimeLand.AddListener(() => currentState = FSMState.Recovery);
-        enemyHealth.OnStagger.AddListener(HandleStagger);
-
-        animator = GetComponent<Animator>();
-        previousState = currentState;
-    }
 
     protected override void FSMUpdate()
     {
@@ -295,11 +260,9 @@ public class ZombieFSM : FSM
 
     private void Stagger()
     {
-        staggerTimer += Time.deltaTime;
-
-        if (staggerTimer >= staggerDuration)
+        if (hitReaction.IsComplete)
         {
-            staggerTimer = 0f;
+            hitReaction.End();
             currentState = FSMState.Wander;
         }
     }

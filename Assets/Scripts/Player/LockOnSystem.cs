@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LockOnSystem : MonoBehaviour
 {
+    private static readonly int Aim = Animator.StringToHash("Aim");
     public PlayerInputHandler input;
     public Transform currentTarget;
     public Transform playerCamTarget;
@@ -21,6 +22,7 @@ public class LockOnSystem : MonoBehaviour
 
     public Animator animator;
     public AimIK aimIK;
+    int upperBodyLayer = 1;
 
     private void Start()
     {
@@ -36,8 +38,9 @@ public class LockOnSystem : MonoBehaviour
             lockOnRange = 15;
             if (!LockMode)
             {
+                animator.SetLayerWeight(upperBodyLayer, 1);
                 LockMode = true;
-                animator.SetBool("Aim", true);
+                animator.SetBool(Aim, true);
                 AcquireTarget();
             }
         }
@@ -45,8 +48,9 @@ public class LockOnSystem : MonoBehaviour
         {
             if (LockMode)
             {
+                animator.SetLayerWeight(upperBodyLayer, 0);
                 LockMode = false;
-                animator.SetBool("Aim", false);
+                animator.SetBool(Aim, false);
                 ClearTarget();
             }
         }
@@ -65,8 +69,10 @@ public class LockOnSystem : MonoBehaviour
             }
             else
             {
-                cinemachineOrbitalFollow.HorizontalAxis.Value = (int)Mathf.Lerp(cinemachineOrbitalFollow.HorizontalAxis.Value, 24, 0.5f);
-                cinemachineOrbitalFollow.VerticalAxis.Value = (int)Mathf.Lerp(cinemachineOrbitalFollow.VerticalAxis.Value, 18, 0.5f);
+                cinemachineOrbitalFollow.HorizontalAxis.Value =
+                    (int)Mathf.Lerp(cinemachineOrbitalFollow.HorizontalAxis.Value, 24, 0.5f);
+                cinemachineOrbitalFollow.VerticalAxis.Value =
+                    (int)Mathf.Lerp(cinemachineOrbitalFollow.VerticalAxis.Value, 18, 0.5f);
             }
         }
     }

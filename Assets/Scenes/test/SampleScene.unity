@@ -656,11 +656,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15086424, y: 0.0000000034774261, z: -5.3069327e-10, w: 0.9885545}
-  m_LocalPosition: {x: -0.21906418, y: 4.2300005, z: -7.7130957}
+  m_LocalPosition: {x: 0, y: 4.23, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 618434910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7999332992161999592, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
   m_PrefabInstance: {fileID: 618434908}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 618434909}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d34bcc9c4380d9d4ab85115e72b185e1, type: 3}
@@ -1182,9 +1182,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8952181137826163308, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330585546}
+    - targetCorrespondingSourceObject: {fileID: 8952181137826163308, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1063900088}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 618434911}
   m_SourcePrefab: {fileID: 100100000, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+--- !u!1 &618434909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+  m_PrefabInstance: {fileID: 618434908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &618434910 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8952181137826163308, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+  m_PrefabInstance: {fileID: 618434908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &618434911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618434909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4152e993e7c38d70dbca3ca62a792afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cam1: {fileID: 330585543}
+  cam2: {fileID: 1063900082}
 --- !u!1 &620703628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,11 +2715,11 @@ Transform:
   m_GameObject: {fileID: 1063900082}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15086423, y: 0.000000003477426, z: -5.30693e-10, w: 0.98855454}
-  m_LocalPosition: {x: -0.21906418, y: 4.2300005, z: -7.7130957}
+  m_LocalPosition: {x: 0, y: 4.23, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 618434910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1078055843
 GameObject:
@@ -3903,6 +3936,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 694594595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1670905921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
+  m_PrefabInstance: {fileID: 7342902904907284409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1670905929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670905921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3582e4e04e690c7e8dc626293d888c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieStaggerReaction
+  duration: 1.07
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.06413269
+      value: 4.013672
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.60813844
+      value: 3.5201828
+      inSlope: -2.826378
+      outSlope: -2.826378
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.25977543
+      outWeight: 0.15758033
+    - serializedVersion: 3
+      time: 0.89998436
+      value: 0.0013922626
+      inSlope: -28.238512
+      outSlope: -28.238512
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.00045254684
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1670905930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670905921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7927f6e3a035a0bfa134993d5c305b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieWander
+  <wanderSpeed>k__BackingField: 1
+  <wanderRadius>k__BackingField: 10
+  playerNearRadius: 30
+  timer: 0
+  active: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  pointList: []
+  playerTransform: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &1683637372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,20 +4751,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
-      propertyPath: staggerForce
-      value: 8
+      propertyPath: currentState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
-      propertyPath: staggerDuration
-      value: 1.6
+      propertyPath: staggerSpeedCurve.m_Curve.Array.data[0].time
+      value: -0.000037914608
+      objectReference: {fileID: 0}
+    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: staggerSpeedCurve.m_Curve.Array.data[1].time
+      value: 0.4999986
+      objectReference: {fileID: 0}
+    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: staggerSpeedCurve.m_Curve.Array.data[0].value
+      value: 4.000279
+      objectReference: {fileID: 0}
+    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
+      propertyPath: staggerSpeedCurve.m_Curve.Array.data[1].value
+      value: 1.9858902
       objectReference: {fileID: 0}
     - target: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_Name
       value: Zombie
-      objectReference: {fileID: 0}
-    - target: {fileID: 1802798537268288256, guid: 292ad4e31263000f298402b100105072, type: 3}
-      propertyPath: startingHealth
-      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1971987059335254125, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4704,14 +4817,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1670905929}
+    - targetCorrespondingSourceObject: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1670905930}
   m_SourcePrefab: {fileID: 100100000, guid: 292ad4e31263000f298402b100105072, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
-  - {fileID: 1063900088}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 620703632}

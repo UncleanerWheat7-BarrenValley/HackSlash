@@ -1533,15 +1533,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.21906418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00000028788781
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.2869041
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2126,17 +2126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2354451459b03d7478b9a15e19e1db17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  input: {fileID: 0}
+  input: {fileID: 7999332992161999592}
   currentTarget: {fileID: 0}
   playerCamTarget: {fileID: 2142536685935319915}
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   lockOnRange: 20
   FreeLookCamera: {fileID: 0}
   LockMode: 0
   SoftLockMode: 0
   animator: {fileID: 3088525434722807830}
+  aimIK: {fileID: 0}
 --- !u!114 &4616086173764934800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2149,7 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1624262caf6e5a5c78500e915b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalForwardHelper
-  input: {fileID: 0}
+  input: {fileID: 7999332992161999592}
   mainCam: {fileID: 0}
 --- !u!114 &3765406365147504609
 MonoBehaviour:
@@ -2163,7 +2164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430902ee5a0e2c14cba5839484d383d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordCombat
-  input: {fileID: 0}
+  input: {fileID: 7999332992161999592}
   animator: {fileID: 3088525434722807830}
   characterController: {fileID: 6316262029058374645}
   forwardHelper: {fileID: 4616086173764934800}
@@ -2189,7 +2190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunCombat
   leftGun: {fileID: 2180756633070918445}
   rightGun: {fileID: 7514323641401517195}
-  input: {fileID: 0}
+  input: {fileID: 7999332992161999592}
   lockOnSystem: {fileID: 2271847503761784855}
   animator: {fileID: 3088525434722807830}
 --- !u!114 &8574967527309755000

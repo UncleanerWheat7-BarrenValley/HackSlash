@@ -60,7 +60,9 @@ public class SwordCombat : MonoBehaviour
 
     void StartAttack(string animationName, float impulseForce)
     {
+        print("Anim weight 1 " + animator.GetLayerWeight(upperBodyLayer));
         animator.SetLayerWeight(upperBodyLayer, 0);
+        print("Anim weight 2 " +animator.GetLayerWeight(upperBodyLayer));
         lockOnSystem.SoftTarget();
         animator.SetTrigger(animationName);
         isAttacking = true;

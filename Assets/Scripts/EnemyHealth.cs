@@ -60,6 +60,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void ApplyImpulse(float force, Transform attacker)
     {
         LastHitDirection = (transform.position - attacker.position).normalized;
+        Debug.DrawRay(transform.position, LastHitDirection, Color.blue, 5);
         FacePlayer(attacker);
 
         rb.linearVelocity = Vector3.zero;

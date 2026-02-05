@@ -3082,7 +3082,6 @@ GameObject:
   - component: {fileID: 8347229782904287138}
   - component: {fileID: 51595871738748035}
   - component: {fileID: 5713177120564543782}
-  - component: {fileID: 8097296620947375020}
   - component: {fileID: 1802798537268288256}
   m_Layer: 6
   m_Name: Zombie
@@ -3167,8 +3166,8 @@ Rigidbody:
   m_GameObject: {fileID: 1189352681135448325}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_LinearDamping: 0.1
+  m_AngularDamping: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3182,7 +3181,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &51595871738748035
@@ -3199,7 +3198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieFSM
   currentState: 0
   speed: 1
-  chaseSpeed: 5
+  idleSpeed: 0
+  walkSpeed: 0
+  chaseSpeed: 0
   rotateSpeed: 20
   patrolRadius: 10
   baseFSM: {fileID: 0}
@@ -3207,8 +3208,6 @@ MonoBehaviour:
   attackRadius: 1
   playerNearRadius: 7
   enemyHealth: {fileID: 1802798537268288256}
-  staggerDuration: 0.3
-  staggerForce: 0
 --- !u!136 &5713177120564543782
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3232,28 +3231,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!195 &8097296620947375020
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189352681135448325}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.25
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1802798537268288256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3266,7 +3243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d600771c69ee5134290dc9787833330c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  startingHealth: 100
+  startingHealth: 500
   currentHealth: 0
   mesh: {fileID: 1189352681135448325}
   sandDissolveOBJ: {fileID: 6156506605203215997, guid: 9b9a180e4ea097216a0d526132ee9235, type: 3}
