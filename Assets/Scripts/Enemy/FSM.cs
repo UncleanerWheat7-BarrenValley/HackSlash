@@ -3,25 +3,25 @@ using System.Collections;
 
 public abstract class FSM : MonoBehaviour
 {
-    protected abstract void Initialize();
-    protected abstract void FSMUpdate();
-    protected abstract void FSMFixedUpdate();
+    protected abstract void FSM_Initialize();
+    protected abstract void FSMTick();
+    protected abstract void FSM_FixedTick();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Initialize();
+        FSM_Initialize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        FSMUpdate();
+        FSMTick();
     }
 
     private void FixedUpdate()
     {
-        FSMFixedUpdate();
+        FSM_FixedTick();
     }
 }

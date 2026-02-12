@@ -869,6 +869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114508438674290367}
+  - component: {fileID: 6315161174837119136}
   m_Layer: 0
   m_Name: middle_01_r
   m_TagString: Untagged
@@ -892,6 +893,27 @@ Transform:
   - {fileID: 2281644935233636478}
   m_Father: {fileID: 4845451175785755739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6315161174837119136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379536525499447862}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.2, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &386537553326624611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,6 +3105,8 @@ GameObject:
   - component: {fileID: 51595871738748035}
   - component: {fileID: 5713177120564543782}
   - component: {fileID: 1802798537268288256}
+  - component: {fileID: 4096108138040370779}
+  - component: {fileID: 4762123623036757427}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
@@ -3196,11 +3220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41b152b63435c655801d5db41722711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieFSM
-  currentState: 0
+  currentState: 2
   speed: 1
   idleSpeed: 0
-  walkSpeed: 0
-  chaseSpeed: 0
+  walkSpeed: 1
+  chaseSpeed: 3
   rotateSpeed: 20
   patrolRadius: 10
   baseFSM: {fileID: 0}
@@ -3261,6 +3285,67 @@ MonoBehaviour:
   OnStagger:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4096108138040370779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189352681135448325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3582e4e04e690c7e8dc626293d888c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieStaggerReaction
+  duration: 1.07
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.06413269
+      value: 4.013672
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.60813844
+      value: 3.5201828
+      inSlope: -2.826378
+      outSlope: -2.826378
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.25977543
+      outWeight: 0.15758033
+    - serializedVersion: 3
+      time: 0.89998436
+      value: 0.0013922626
+      inSlope: -28.238512
+      outSlope: -28.238512
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.00045254684
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4762123623036757427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189352681135448325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0c577e65bd2f999b02516c7a89ebd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackExecutor
+  animator: {fileID: 6209737029303618980}
+  hitBox: {fileID: 6315161174837119136}
+  attackCooldown: 1.2
 --- !u!1 &1196433222809368355
 GameObject:
   m_ObjectHideFlags: 0

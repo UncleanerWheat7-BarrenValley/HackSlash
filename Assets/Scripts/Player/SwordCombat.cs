@@ -3,6 +3,7 @@ using UnityEngine;
 public class SwordCombat : MonoBehaviour
 {
     private static readonly int StingerEnd = Animator.StringToHash("StingerEnd");
+    private static readonly int HelmRecover = Animator.StringToHash("HelmRecover");
     public PlayerInputHandler input;
     private SwordCombat swordCombat;
     public Animator animator;
@@ -12,8 +13,10 @@ public class SwordCombat : MonoBehaviour
     public bool isSecondaryAttack;
     public bool isPlanted;
     public bool useStingerForce = false;
+    [SerializeField] GroundCheck groundCheck;
 
     public float stingerForce = 10;
+    bool useHelmBreak = false;
     public LockOnSystem lockOnSystem;
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
@@ -30,11 +33,23 @@ public class SwordCombat : MonoBehaviour
             return;
         }
 
+        if (useHelmBreak)
+        {
+            HandleHelmBreaker();
+        }
+
         // prevent retriggering while mid-animation
         if (isAttacking) return;
 
         if (input.AttackPressed)
         {
+            if (!groundCheck.CheckGrounded())
+            {
+                useHelmBreak = true;
+                StartAttack("HelmBreak", 0);
+                return;
+            }
+
             if (lockOnSystem.LockMode)
             {
                 float localZ = forwardHelper.GetLocalMoveZ();
@@ -60,9 +75,7 @@ public class SwordCombat : MonoBehaviour
 
     void StartAttack(string animationName, float impulseForce)
     {
-        print("Anim weight 1 " + animator.GetLayerWeight(upperBodyLayer));
         animator.SetLayerWeight(upperBodyLayer, 0);
-        print("Anim weight 2 " +animator.GetLayerWeight(upperBodyLayer));
         lockOnSystem.SoftTarget();
         animator.SetTrigger(animationName);
         isAttacking = true;
@@ -75,6 +88,19 @@ public class SwordCombat : MonoBehaviour
         if (!useStingerForce) return;
         print("Stinging");
         characterController.Move((transform.forward * (stingerForce * Time.deltaTime)));
+    }
+    
+    private void HandleHelmBreaker()
+    {
+        if (!useHelmBreak) return;
+        print("breaking helm");
+        characterController.Move((transform.up * -(stingerForce * Time.deltaTime)));
+
+        if (groundCheck.CheckGrounded())
+        {
+            animator.SetTrigger(HelmRecover);
+            useHelmBreak = false;
+        }
     }
 
     public void EndStringerForce()

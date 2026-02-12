@@ -6,13 +6,12 @@ using UnityEngine.AI;
 public class ZombieFSM : FSM
 {
     private static readonly int SpeedAnim = Animator.StringToHash("Speed");
-    private static readonly int AttackAnim = Animator.StringToHash("Attack");
     private static readonly int LaunchedUpAnim = Animator.StringToHash("LaunchedUp");
     private static readonly int Hit = Animator.StringToHash("Hit");
     private static readonly int HitX = Animator.StringToHash("HitX");
     private static readonly int HitY = Animator.StringToHash("HitY");
     int StandUpStateHash = Animator.StringToHash("Base Layer.StandUp");
-    
+
 
     public enum FSMState
     {
@@ -27,6 +26,7 @@ public class ZombieFSM : FSM
     }
 
     private IHitReaction hitReaction;
+    private EnemyAttackExecutor attackExecutor;
     public FSMState currentState = FSMState.Idle;
     public float speed = 2.0f;
     public float idleSpeed = 0;
@@ -50,11 +50,14 @@ public class ZombieFSM : FSM
     private bool standUpStarted;
 
     private FSMState previousState;
-    
-    protected override void Initialize()
+
+    protected override void FSM_Initialize()
     {
         hitReaction = GetComponent<IHitReaction>();
+        attackExecutor = GetComponent<EnemyAttackExecutor>();
         enemyHealth = GetComponent<EnemyHealth>();
+
+
         pointList = GameObject.FindGameObjectsWithTag("WanderPoint");
         baseFSM = GetComponent<FSM>();
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -76,7 +79,6 @@ public class ZombieFSM : FSM
     private void StateEnter(FSMState newState)
     {
         // Reset all animation bools
-        animator.SetBool(AttackAnim, false);
         animator.SetBool(LaunchedUpAnim, false);
 
         // Set the appropriate animation bool for the new state
@@ -93,7 +95,7 @@ public class ZombieFSM : FSM
                 break;
             case FSMState.Attack:
                 speed = idleSpeed;
-                animator.SetBool(AttackAnim, true);
+                attackExecutor.StartAttack();
                 break;
             case FSMState.Stagger:
                 speed = idleSpeed;
@@ -126,7 +128,6 @@ public class ZombieFSM : FSM
                 break;
 
             case FSMState.Attack:
-                animator.SetBool(AttackAnim, false);
                 break;
 
             case FSMState.LaunchedUp:
@@ -136,9 +137,7 @@ public class ZombieFSM : FSM
     }
 
 
-
-
-    protected override void FSMUpdate()
+    protected override void FSMTick()
     {
         if (previousState != currentState)
         {
@@ -214,21 +213,10 @@ public class ZombieFSM : FSM
 
     private void Attack()
     {
-        targetPosition = playerTransform.position;
-        Vector3 frontVector = Vector3.forward;
-        float dist = Vector3.Distance(transform.position, targetPosition);
-        if (dist >= attackRadius && dist < playerNearRadius)
+        if (!attackExecutor.IsAttacking)
         {
             currentState = FSMState.Chase;
-            return;
         }
-        else if (dist >= playerNearRadius)
-        {
-            currentState = FSMState.Wander;
-            return;
-        }
-
-        SetRotation();
     }
 
     private void Chase()
@@ -269,6 +257,8 @@ public class ZombieFSM : FSM
 
     private void SetRotation()
     {
+        if(currentState == FSMState.Attack) return;
+        
         Quaternion targetRotation = Quaternion.FromToRotation(Vector3.forward, targetPosition - transform.position);
         Vector3 eular = targetRotation.eulerAngles;
         eular.x = 0;
@@ -309,7 +299,7 @@ public class ZombieFSM : FSM
         //turn off movement and enter the LaunchedUp animation or whatever
     }
 
-    protected override void FSMFixedUpdate()
+    protected override void FSM_FixedTick()
     {
     }
 
