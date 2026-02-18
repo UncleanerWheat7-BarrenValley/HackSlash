@@ -870,6 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 114508438674290367}
   - component: {fileID: 6315161174837119136}
+  - component: {fileID: 1992498689597079589}
   m_Layer: 0
   m_Name: middle_01_r
   m_TagString: Untagged
@@ -914,6 +915,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1992498689597079589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379536525499447862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65fe74bbe2663189adeae4206709f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  damageAmount: 10
+  attackExecutor: {fileID: 4762123623036757427}
 --- !u!1 &386537553326624611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,7 +3282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d600771c69ee5134290dc9787833330c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  startingHealth: 500
+  startingHealth: 1000
   currentHealth: 0
   mesh: {fileID: 1189352681135448325}
   sandDissolveOBJ: {fileID: 6156506605203215997, guid: 9b9a180e4ea097216a0d526132ee9235, type: 3}

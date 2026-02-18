@@ -157,6 +157,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void HandleHighTimeLift()
+    {
+        velocity.y = jumpForce;
+    }
+
 
     //////////////////////////////// 
     /// moving platform stuff

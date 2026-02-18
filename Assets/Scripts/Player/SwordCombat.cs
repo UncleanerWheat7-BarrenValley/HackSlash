@@ -14,9 +14,10 @@ public class SwordCombat : MonoBehaviour
     public bool isPlanted;
     public bool useStingerForce = false;
     [SerializeField] GroundCheck groundCheck;
+    [SerializeField] GameObject helmBreakerDecalPrefab;
 
     public float stingerForce = 10;
-    bool useHelmBreak = false;
+    public bool useHelmBreak = false;
     public LockOnSystem lockOnSystem;
     public bool IsAttacking => isAttacking;
     public bool IsSecondaryAttack => isSecondaryAttack;
@@ -24,6 +25,7 @@ public class SwordCombat : MonoBehaviour
 
     int upperBodyLayer = 1;
     public float hightimeImpulseForce;
+    bool useHighTime = false;
 
     public void HandleAttack()
     {
@@ -46,7 +48,7 @@ public class SwordCombat : MonoBehaviour
             if (!groundCheck.CheckGrounded())
             {
                 useHelmBreak = true;
-                StartAttack("HelmBreak", 0);
+                StartAttack("HelmBreak", -10);
                 return;
             }
 
@@ -59,6 +61,7 @@ public class SwordCombat : MonoBehaviour
                 }
                 else if (localZ < -0.5f)
                 {
+                    useHighTime = true;
                     StartAttack("HighTime", hightimeImpulseForce);
                 }
                 else
@@ -68,6 +71,7 @@ public class SwordCombat : MonoBehaviour
             }
             else
             {
+                //lockOnSystem.SoftTarget();
                 StartAttack("Attack", 0);
             }
         }
@@ -76,7 +80,6 @@ public class SwordCombat : MonoBehaviour
     void StartAttack(string animationName, float impulseForce)
     {
         animator.SetLayerWeight(upperBodyLayer, 0);
-        lockOnSystem.SoftTarget();
         animator.SetTrigger(animationName);
         isAttacking = true;
         isPlanted = true;
@@ -89,7 +92,7 @@ public class SwordCombat : MonoBehaviour
         print("Stinging");
         characterController.Move((transform.forward * (stingerForce * Time.deltaTime)));
     }
-    
+
     private void HandleHelmBreaker()
     {
         if (!useHelmBreak) return;
@@ -97,7 +100,7 @@ public class SwordCombat : MonoBehaviour
         characterController.Move((transform.up * -(stingerForce * Time.deltaTime)));
 
         if (groundCheck.CheckGrounded())
-        {
+        {   
             animator.SetTrigger(HelmRecover);
             useHelmBreak = false;
         }
@@ -115,6 +118,28 @@ public class SwordCombat : MonoBehaviour
         RaycastHit objectHit;
     }
 
+    public void HandleHighTimeLaunch()
+    {
+        if (input.AttackHeld)
+        {
+            print("using high time launch");
+            GetComponent<PlayerController>().HandleHighTimeLift();
+        }
+    }
+
+    public void HandleHighTimeDecal()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 3f))
+        {
+            Quaternion alignToSurface = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            Quaternion xOffset = Quaternion.Euler(90f, 0f, 0f);
+
+            Quaternion finalRot = alignToSurface * xOffset;
+            Instantiate(helmBreakerDecalPrefab, (hit.point + transform.forward * 2.5f) + hit.normal * 0.02f, finalRot);
+        }
+    }
+
     /////////////////////////////////////////////////////
     /// reset functions
 /////////////////////////////////////////////////////
@@ -123,6 +148,7 @@ public class SwordCombat : MonoBehaviour
     {
         print("Reset");
         isAttacking = false;
+        useHighTime = false;
     }
 
 // Called from animation event near the end of Attack1

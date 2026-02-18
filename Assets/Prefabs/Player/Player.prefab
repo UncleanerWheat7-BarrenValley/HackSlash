@@ -2140,6 +2140,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 670899778146644591}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 226490008029887392}
     - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8121881039065457413}
@@ -2596,9 +2599,10 @@ MonoBehaviour:
   useStingerForce: 0
   groundCheck: {fileID: 670899778146644591}
   stingerForce: 10
+  useHelmBreak: 0
   lockOnSystem: {fileID: 2271847503761784855}
   weaponHitBox: {fileID: 2693977832415553911}
-  hightimeImpulseForce: 5
+  hightimeImpulseForce: 3.5
 --- !u!114 &4136387838828812076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2667,6 +2671,19 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &226490008029887392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608448155763405014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0121de7985f82f618912d10fcd4b84ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  health: 100
 --- !u!4 &8952181137826163308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58f1cb3d58a3e134db9e272555238e05, type: 3}

@@ -568,11 +568,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 775158182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.972}
---- !u!4 &330585546 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7574572798853763720, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-  m_PrefabInstance: {fileID: 618434908}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &379944692
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,24 +807,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &468042959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-  m_PrefabInstance: {fileID: 618434908}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &468042972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468042959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0121de7985f82f618912d10fcd4b84ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  health: 100
 --- !u!1 &468407628
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,22 +927,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2271847503761784855, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: FreeLookCamera
-      value: 
-      objectReference: {fileID: 1063900087}
-    - target: {fileID: 3934119154696653299, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 330585546}
-    - target: {fileID: 5747700645604907542, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 3765406365147504609, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      propertyPath: hightimeImpulseForce
+      value: 3.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8517343033928518750, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 3765406365147504609, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      propertyPath: helmBreakerDecalPrefab
+      value: 
+      objectReference: {fileID: 1090371743847947606, guid: 85917b1f8c90bb8fa80b3d1c12ff2805, type: 3}
     - target: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1013,10 +982,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 468042972}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
 --- !u!1 &620703628
 GameObject:
@@ -1131,25 +1097,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &627095646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 379536525499447862, guid: 292ad4e31263000f298402b100105072, type: 3}
-  m_PrefabInstance: {fileID: 1326607598}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &627095649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627095646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65fe74bbe2663189adeae4206709f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  damageAmount: 10
-  attackExecutor: {fileID: 1629819221}
 --- !u!1 &644475176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,17 +2242,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 775158182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.972}
---- !u!114 &1063900087 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6846708456260494171, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
-  m_PrefabInstance: {fileID: 618434908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!1 &1078055843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3078,17 +3014,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 51595871738748035, guid: 292ad4e31263000f298402b100105072, type: 3}
-      propertyPath: attackRadius
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1189352681135448325, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_Name
       value: 'Zombie '
       objectReference: {fileID: 0}
     - target: {fileID: 1802798537268288256, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: startingHealth
-      value: 50
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1971987059335254125, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3130,17 +3062,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6315161174837119136, guid: 292ad4e31263000f298402b100105072, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 379536525499447862, guid: 292ad4e31263000f298402b100105072, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 627095649}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 292ad4e31263000f298402b100105072, type: 3}
 --- !u!1 &1327663501
 GameObject:
@@ -3509,17 +3434,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 775158182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1629819221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4762123623036757427, guid: 292ad4e31263000f298402b100105072, type: 3}
-  m_PrefabInstance: {fileID: 1326607598}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0c577e65bd2f999b02516c7a89ebd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackExecutor
 --- !u!1 &1653259076
 GameObject:
   m_ObjectHideFlags: 0
