@@ -2598,6 +2598,7 @@ MonoBehaviour:
   isPlanted: 0
   useStingerForce: 0
   groundCheck: {fileID: 670899778146644591}
+  helmBreakerDecalPrefab: {fileID: 1090371743847947606, guid: 85917b1f8c90bb8fa80b3d1c12ff2805, type: 3}
   stingerForce: 10
   useHelmBreak: 0
   lockOnSystem: {fileID: 2271847503761784855}

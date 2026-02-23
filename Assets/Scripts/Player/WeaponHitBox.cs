@@ -10,6 +10,9 @@ public class WeaponHitBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Player"))
+            return;
+        
         var enemyHealth = other.GetComponent<EnemyHealth>();
         if (other.TryGetComponent<IDamageable>(out var target))
         {
