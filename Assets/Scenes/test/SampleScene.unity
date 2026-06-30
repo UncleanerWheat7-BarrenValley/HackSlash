@@ -706,7 +706,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
@@ -758,7 +758,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -935,6 +935,14 @@ PrefabInstance:
       propertyPath: helmBreakerDecalPrefab
       value: 
       objectReference: {fileID: 1090371743847947606, guid: 85917b1f8c90bb8fa80b3d1c12ff2805, type: 3}
+    - target: {fileID: 5209872855867175177, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209872855867175177, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.276
+      objectReference: {fileID: 0}
     - target: {fileID: 8608448155763405014, guid: 6014f84b5c8e1f347b2f85819a82669b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3020,7 +3028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1802798537268288256, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: startingHealth
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1971987059335254125, guid: 292ad4e31263000f298402b100105072, type: 3}
       propertyPath: m_LocalPosition.x

@@ -4,6 +4,7 @@ public class SwordCombat : MonoBehaviour
 {
     private static readonly int StingerEnd = Animator.StringToHash("StingerEnd");
     private static readonly int HelmRecover = Animator.StringToHash("HelmRecover");
+    private static readonly int Special = Animator.StringToHash("Special");
     public PlayerInputHandler input;
     private SwordCombat swordCombat;
     public Animator animator;
@@ -42,6 +43,11 @@ public class SwordCombat : MonoBehaviour
 
         // prevent retriggering while mid-animation
         if (isAttacking) return;
+
+        if (input.SpecialPressed)
+        {
+            animator.SetTrigger(Special);
+        }
 
         if (input.AttackPressed)
         {
@@ -100,7 +106,7 @@ public class SwordCombat : MonoBehaviour
         characterController.Move((transform.up * -(stingerForce * Time.deltaTime)));
 
         if (groundCheck.CheckGrounded())
-        {   
+        {
             animator.SetTrigger(HelmRecover);
             useHelmBreak = false;
         }
@@ -151,7 +157,7 @@ public class SwordCombat : MonoBehaviour
         useHighTime = false;
     }
 
-// Called from animation event near the end of Attack1
+    // Called from animation event near the end of Attack1
     public void SetAttackBTrue()
     {
         if (!IsAttacking)

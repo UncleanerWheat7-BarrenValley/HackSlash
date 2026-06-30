@@ -9,6 +9,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpPressed { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool GunPressed { get; private set; }
+
+    public bool SpecialPressed { get; private set; }
     public bool AttackHeld { get; private set; }
     public bool LockOnHeld { get; private set; }
 
@@ -30,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
         inputActions.Gameplay.Attack.performed += ctx => AttackHeld = true;
         inputActions.Gameplay.Attack.canceled += ctx => AttackHeld = false;
         inputActions.Gameplay.Gun.performed += ctx => GunPressed = true;
+        inputActions.Gameplay.Special.performed += ctx => SpecialPressed = true;
         inputActions.Gameplay.LockOn.performed += ctx => LockOnHeld = true;
         inputActions.Gameplay.LockOn.canceled += ctx => LockOnHeld = false;
     }
@@ -44,6 +47,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void LateUpdate()
     {
-        JumpPressed = AttackPressed = GunPressed = false;
+        JumpPressed = AttackPressed = GunPressed = SpecialPressed = false;
     }
 }
